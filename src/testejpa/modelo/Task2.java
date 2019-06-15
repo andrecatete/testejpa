@@ -5,20 +5,24 @@ import java.util.Calendar;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity		// tabela
-public class Task {
+@Table(name = "task5")
+public class Task2 {
 	
-	@Id		//chave primária
-	@GeneratedValue		//auto incremento
+	@Id					//chave primária
+	@GeneratedValue(strategy=GenerationType.IDENTITY)		//auto incremento
 	private Long id;
 
 	private String descricao;
-	private boolean finalizado;
+	
+	@Column(nullable = true)
+	private boolean finalizada;
 
 	@Column(name="data_finalizado", nullable = true)
 	@Temporal(TemporalType.DATE)		//configuração de data - facilita
@@ -41,11 +45,11 @@ public class Task {
 	}
 
 	public boolean isFinalizado() {
-		return finalizado;
+		return finalizada;
 	}
 
 	public void setFinalizado(boolean finalizado) {
-		this.finalizado = finalizado;
+		this.finalizada = finalizado;
 	}
 
 	public Calendar getDataFinalizacao() {
